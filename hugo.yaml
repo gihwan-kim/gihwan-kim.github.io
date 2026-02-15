@@ -9,7 +9,7 @@ caches:
     dir: ":cacheDir/images"
 
 params:
-  googleSiteVerification: "googled411146d25d46031"
+  googleSiteVerification: "c2ijaRI3ScHe5XasWemGTQH2vzOCbYKTLsxK0OPYk7c"
   siteDescription: "Gihwan Kim - M.S. student at Chungnam National University. Research on model compression, quantization, and vision Transformer optimization. Publications at WACV, IGARSS, ICTC."
   author: "Gihwan Kim"
   avatar: "/img/profile.jpg"   # replace with /img/avatar.jpg if you want
