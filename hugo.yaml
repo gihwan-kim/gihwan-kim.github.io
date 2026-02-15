@@ -1,7 +1,7 @@
 baseURL: "https://gihwan-kim.github.io/"
 languageCode: "en-us"
 title: "Gihwan Kim"
-enableRobotsTXT: true
+enableRobotsTXT: false
 
 # Recommended when deploying with GitHub Actions (see Hugo docs)
 caches:
@@ -9,7 +9,7 @@ caches:
     dir: ":cacheDir/images"
 
 params:
-  siteDescription: "Research portfolio & notes"
+  siteDescription: "Gihwan Kim - M.S. student at Chungnam National University. Research on model compression, quantization, and vision Transformer optimization. Publications at WACV, IGARSS, ICTC."
   author: "Gihwan Kim"
   avatar: "/img/profile.jpg"   # replace with /img/avatar.jpg if you want
   resume: "/files/resume.pdf"
