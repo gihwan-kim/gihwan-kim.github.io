@@ -78,8 +78,14 @@ a:hover{ text-decoration:underline; }
 .exp-item{ margin:10px 0 18px; }
 .exp-title{ font-weight:800; }
 .exp-links a{ margin-right:12px; }
+.exp-item-highlight{
+  padding:14px; margin:8px 0;
+  background:linear-gradient(135deg, #e8f0fe 0%, #f0f4ff 100%);
+  border:1px solid #c2d9ff; border-radius:var(--radius);
+}
 
 .news-list{ margin:0; padding-left:18px; list-style:none; }
+.places-list{ margin:6px 0 0 18px; padding-left:0; }
 .news-list li{ margin:6px 0; padding-left:0; }
 .news-date{ color:var(--muted); font-size:13px; margin-right:10px; }
 .news-text{ }

@@ -1,4 +1,9 @@
 items:
+  - title: "Visiting Scholar"
+    org: "Carnegie Mellon University, Software and Societal Systems Department, USA"
+    period: "2025 – Present"
+    highlight: true
+
   - title: "Research Intern"
     org: "Electronics and Telecommunications Research Institute, Republic of Korea, Daejeon"
     period: "Jan 2024 – Feb 2024"
@@ -8,6 +13,7 @@ items:
     org: "Purdue University, USA"
     period: "Jan 2023 – Feb 2023"
     description: "Participated as a Korean Software Square Winter 2023 program. Implemented and researched counter drone system with on-device AI."
+    highlight: true
 
   - title: "Research Student"
     org: "Embedded Systems Laboratory at Chungnam National University, Republic of Korea, Daejeon"

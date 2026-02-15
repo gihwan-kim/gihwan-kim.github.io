@@ -93,7 +93,7 @@
   <h2>Experience</h2>
   <ol class="experience">
     {{ range .Site.Data.experience.items }}
-      <li class="exp-item">
+      <li class="exp-item{{ if .highlight }} exp-item-highlight{{ end }}">
         <div class="exp-head">
           <div class="exp-title">{{ .title }}</div>
           <div class="muted">{{ .org }} · {{ .period }}</div>
@@ -118,5 +118,26 @@
       <li>{{ . }}</li>
     {{ end }}
   </ol>
+</section>
+
+<section class="section">
+  <h2>Outside of Work</h2>
+  <p>{{ .Site.Data.outside.intro }}</p>
+  <h3 class="section-h">🌍 Places I've Visited</h3>
+  <ul class="places-list">
+    {{ range .Site.Data.outside.visited }}
+      <li><strong>{{ .country }}</strong>{{ if .cities }}: {{ .cities }}{{ end }}</li>
+    {{ end }}
+  </ul>
+  <h3 class="section-h">🌍 Places I Planned</h3>
+  {{ if .Site.Data.outside.planned }}
+  <ul class="places-list">
+    {{ range .Site.Data.outside.planned }}
+      <li><strong>{{ .country }}</strong>{{ if .cities }}: {{ .cities }}{{ end }}</li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="muted">Coming soon...</p>
+  {{ end }}
 </section>
 {{ end }}
