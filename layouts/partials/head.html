@@ -1,5 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{ with .Site.Params.googleSiteVerification }}<meta name="google-site-verification" content="{{ . }}" />{{ end }}
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Site.Params.siteDescription | default .Site.Title }}">
 <link rel="canonical" href="{{ .Permalink }}">
