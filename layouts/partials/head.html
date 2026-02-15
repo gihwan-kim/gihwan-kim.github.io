@@ -1,0 +1,6 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ .Site.Params.siteDescription | default .Site.Title }}">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">

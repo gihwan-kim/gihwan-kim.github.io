@@ -1,0 +1,15 @@
+name: "Gihwan Kim"
+email: "gihwan.kim98@o.cnu.ac.kr"
+affiliation: "ESLAB / Chungnam National University: 2024 March - Current"
+degree: "M.S. Computer System and Software"
+links:
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?user=hN5V_WUAAAAJ&hl=en"
+  - label: "LinkedIn"
+    url: "http://www.linkedin.com/in/gihwan-kim"
+  - label: "GitHub"
+    url: "https://github.com/gihwan-kim"
+intro: >
+  I am an M.S. Computer Science and Engineering student at Chungnam National University, advised by Hyungshin Kim in ESLAB
+  My research experience has centered on model compression and acceleration. Previously, i worked on semantic segmentation and object detection, focusing on vision tasks acceleration and compression in satellite applications. 
+  I earned B.S. degree in Computer Software and Engineering from Chungnam National University.

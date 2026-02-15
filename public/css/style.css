@@ -1,0 +1,105 @@
+:root{
+  --fg:#111;
+  --muted:#666;
+  --bg:#fff;
+  --border:#e6e6e6;
+  --card:#fafafa;
+  --link:#0a58ca;
+  --radius:16px;
+  --max: 920px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:var(--bg); color:var(--fg); font-family:var(--sans); }
+a{ color:var(--link); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.container{ max-width:var(--max); margin:0 auto; padding:24px; }
+
+.site-header{ border-bottom:1px solid var(--border); }
+.site-footer{ border-top:1px solid var(--border); margin-top:40px; }
+
+.nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.nav-left{ font-weight:700; color:var(--fg); }
+.nav-right a{ margin-left:14px; color:var(--fg); }
+.nav-right a:hover{ text-decoration:none; color:var(--link); }
+
+.hero{ display:flex; gap:28px; align-items:flex-start; margin-top:18px; }
+.avatar{ width:140px; height:140px; border-radius:999px; border:1px solid var(--border); background:#fff; }
+.title{ font-size:42px; margin:0 0 10px; letter-spacing:-0.02em; }
+.section-h{ margin:14px 0 6px; }
+.meta, .links{ margin:0; padding-left:18px; }
+.meta li{ margin:3px 0; }
+.links li{ margin:3px 0; }
+
+.section{ margin-top:26px; }
+.section h2{ margin:0 0 10px; font-size:24px; }
+.muted{ color:var(--muted); }
+.button{
+  display:inline-block; padding:10px 14px; border:1px solid var(--border);
+  border-radius:999px; background:#fff; color:var(--fg);
+}
+.button:hover{ border-color:#cfcfcf; text-decoration:none; }
+
+.cards{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; }
+.card{
+  border:1px solid var(--border); border-radius:var(--radius); padding:14px;
+  background:var(--card); color:var(--fg);
+}
+.card:hover{ border-color:#cfcfcf; text-decoration:none; }
+.card-title{ font-weight:700; margin-bottom:6px; }
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; }
+.panel{
+  border:1px solid var(--border); border-radius:var(--radius); padding:14px; background:#fff;
+}
+.panel-title{ font-weight:700; margin-bottom:6px; }
+
+.post .content, .content{ line-height:1.65; }
+.post pre, .content pre{
+  background:#0b0b0b; color:#f5f5f5; padding:12px 14px; border-radius:12px;
+  overflow:auto; font-family:var(--mono); font-size:13px;
+}
+.post code, .content code{ font-family:var(--mono); }
+
+.toc{
+  margin:18px 0; padding:14px; border:1px solid var(--border);
+  border-radius:var(--radius); background:#fff;
+}
+.toc-title{ font-weight:700; margin-bottom:8px; }
+
+.list{ margin-top:18px; display:flex; flex-direction:column; gap:14px; }
+.list-item{ padding:12px 0; border-bottom:1px solid var(--border); }
+.list-title{ font-size:18px; font-weight:700; }
+.list-summary{ margin-top:6px; color:var(--muted); }
+.experience{ padding-left:20px; }
+.exp-item{ margin:10px 0 18px; }
+.exp-title{ font-weight:800; }
+.exp-links a{ margin-right:12px; }
+
+.news-list{ margin:0; padding-left:18px; list-style:none; }
+.news-list li{ margin:6px 0; padding-left:0; }
+.news-date{ color:var(--muted); font-size:13px; margin-right:10px; }
+.news-text{ }
+
+.tag-cloud{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.tag{ border:1px solid var(--border); border-radius:999px; padding:6px 10px; color:var(--fg); }
+.tag:hover{ border-color:#cfcfcf; text-decoration:none; }
+
+/* Research highlights - award/badge style like yutianchen.blog */
+.research-item{ margin-bottom:10px; }
+.research-notes{ display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.research-note{
+  display:inline-block; margin-top:4px; padding:4px 10px;
+  font-size:13px; font-weight:600; color:var(--link);
+  background:linear-gradient(135deg, #e8f0fe 0%, #f0f4ff 100%);
+  border:1px solid #c2d9ff; border-radius:999px;
+}
+.note-emoji{ margin-right:4px; }
+
+@media (max-width: 640px){
+  .hero{ flex-direction:column; }
+  .title{ font-size:34px; }
+}

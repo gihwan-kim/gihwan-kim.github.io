@@ -1,0 +1,122 @@
+{{ define "main" }}
+{{ $p := .Site.Data.profile }}
+<div class="hero">
+  <div class="hero-left">
+    <img class="avatar" src="{{ $p.avatar | default .Site.Params.avatar }}" alt="portrait">
+  </div>
+  <div class="hero-right">
+    <h1 class="title">{{ $p.name }}</h1>
+    <ul class="meta">
+      <li><a href="mailto:{{ $p.email }}">{{ $p.email }}</a></li>
+      <li>{{ $p.affiliation }}</li>
+      <li>{{ $p.degree }}</li>
+    </ul>
+
+    <h3 class="section-h">Also find me at ...</h3>
+    <ul class="links">
+      {{ range $p.links }}
+        <li><a href="{{ .url }}">{{ .label }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+<section class="section">
+  <h2>About Me</h2>
+  <p>{{ $p.intro }}</p>
+  <p><a class="button" href="{{ $.Site.Params.resume }}">CV</a></p>
+</section>
+
+<section class="section" id="news">
+  <h2>News</h2>
+  <ul class="news-list">
+    {{ range .Site.Data.news.items }}
+      <li>
+        <span class="news-date">{{ .date }}</span>
+        <span class="news-text">{{ .text }}</span>
+      </li>
+    {{ end }}
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Publications</h2>
+  <!-- <p class="muted">Highlight list. Put a full list on a dedicated page later if you want.</p> -->
+  <ul>
+    {{ range .Site.Data.research.items }}
+      <li class="research-item">
+        <a href="{{ .url }}">{{ .title }}</a>
+        {{ if or .notes .note }}
+          <div class="research-notes">
+            {{ if .notes }}
+              {{ range .notes }}
+                <div class="research-note">{{ if .emoji }}<span class="note-emoji">{{ .emoji }}</span>{{ end }}{{ default . .text }}</div>
+              {{ end }}
+            {{ else }}
+              <div class="research-note">{{ if .emoji }}<span class="note-emoji">{{ .emoji }}</span>{{ end }}{{ .note }}</div>
+            {{ end }}
+          </div>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+</section>
+
+<section class="section">
+  <h2>Skills</h2>
+  <div class="grid">
+    {{ range .Site.Data.skills.categories }}
+      <div class="panel">
+        <div class="panel-title">{{ .name }}</div>
+        <div class="muted">{{ delimit .items ", " }}</div>
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <h2>Education</h2>
+  <ol class="experience">
+    {{ range .Site.Data.education.items }}
+      <li class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title">{{ .title }}</div>
+          <div class="muted">{{ .org }} · {{ .period }}</div>
+        </div>
+        {{ if .description }}<div class="exp-body">{{ .description }}</div>{{ end }}
+      </li>
+    {{ end }}
+  </ol>
+</section>
+
+<section class="section">
+  <h2>Experience</h2>
+  <ol class="experience">
+    {{ range .Site.Data.experience.items }}
+      <li class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title">{{ .title }}</div>
+          <div class="muted">{{ .org }} · {{ .period }}</div>
+        </div>
+        <div class="exp-body">{{ .description }}</div>
+        {{ if .links }}
+          <div class="exp-links">
+            {{ range .links }}
+              <a href="{{ .url }}">{{ .label }}</a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ol>
+</section>
+
+<section class="section">
+  <h2>Courses</h2>
+  <ol>
+    {{ range .Site.Data.courses.items }}
+      <li>{{ . }}</li>
+    {{ end }}
+  </ol>
+</section>
+{{ end }}

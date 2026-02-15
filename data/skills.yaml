@@ -1,0 +1,5 @@
+categories:
+  - name: "Efficient AI / Quantization"
+    items: ["PTQ/QAT", "TensorRT", "CUDA", "ONNX", "PyTorch"]
+  - name: "Robotics / SLAM"
+    items: ["SLAM", "VO", "C++"]

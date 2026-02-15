@@ -1,0 +1,24 @@
+{{ define "main" }}
+<article class="post">
+  <h1 class="title">{{ .Title }}</h1>
+  <div class="muted">
+    {{ with .Date }}{{ .Format "2006-01-02" }}{{ end }}
+    {{ with .Params.tags }} ·
+      {{ range $i, $t := . }}
+        {{ if $i }}, {{ end }}<a href="/tags/{{ $t | urlize }}/">{{ $t }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+
+  {{ if .TableOfContents }}
+    <div class="toc">
+      <div class="toc-title">Table of Content</div>
+      {{ .TableOfContents }}
+    </div>
+  {{ end }}
+
+  <div class="content">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

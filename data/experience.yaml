@@ -1,0 +1,20 @@
+items:
+  - title: "Research Intern"
+    org: "Electronics and Telecommunications Research Institute, Republic of Korea, Daejeon"
+    period: "Jan 2024 – Feb 2024"
+    description: ""
+
+  - title: "Visiting Scholar"
+    org: "Purdue University, USA"
+    period: "Jan 2023 – Feb 2023"
+    description: "Participated as a Korean Software Square Winter 2023 program. Implemented and researched counter drone system with on-device AI."
+
+  - title: "Research Student"
+    org: "Embedded Systems Laboratory at Chungnam National University, Republic of Korea, Daejeon"
+    period: "Apr 2022 – Dec 2023"
+    description: "Researched quantization and optimization for a low power computer vision system."
+
+  - title: "SW program 42 Seoul"
+    org: "Innovation Academy, Republic of Korea, Seoul"
+    period: "Feb 2020 – Jun 2021"
+    description: "Participated software education program."

@@ -1,0 +1,25 @@
+baseURL: "https://YOUR_GITHUB_USERNAME.github.io/"
+languageCode: "en-us"
+title: "Gihwan Kim"
+enableRobotsTXT: true
+
+# Recommended when deploying with GitHub Actions (see Hugo docs)
+caches:
+  images:
+    dir: ":cacheDir/images"
+
+params:
+  siteDescription: "Research portfolio & notes"
+  author: "Gihwan Kim"
+  avatar: "/img/profile.jpg"   # replace with /img/avatar.jpg if you want
+  resume: "/files/resume.pdf"
+
+menu:
+  main:
+    - name: "About Me"
+      url: "/"
+      weight: 1
+
+markup:
+  highlight:
+    noClasses: false

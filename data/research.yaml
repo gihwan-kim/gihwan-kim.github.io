@@ -1,0 +1,24 @@
+items:
+  - title: "IPTQ-ViT: Post-Training Quantization of Non-linear Functions for Integer-only Vision Transformers"
+    url: "https://arxiv.org/abs/2511.15369"
+    notes:
+      - text: "WACV 2026 Oral"
+        emoji: "⭐"
+      - text: "1st author"
+  - title: "Mixed Non-linear Quantization for Vision Transformers"
+    url: "https://link.springer.com/chapter/10.1007/978-3-031-49829-6_22"
+    notes:
+      - text: "ECCV 2024"
+      - text: "Co-1st author"
+  - title: "Lightweight Disaster Semantic Segmentation for UAV On-Device Intelligence"
+    url: "https://ieeexplore.ieee.org/abstract/document/10642893"
+    notes:
+      - text: "IGARSS 2024, IEEE International Geoscience and Remote Sensing Symposium"
+      - text: "2nd author"
+  - title: "Power Efficient Long Range Drone Networking System for UAV Detection"
+    url: "https://ieeexplore.ieee.org/abstract/document/10392942"
+    notes:
+      - text: "Best Paper Award"
+        emoji: "🏆"
+      - text: "ICTC 2023"
+      - text: "1st author"

@@ -1,0 +1,7 @@
+items:
+  - title: "Project 1"
+    url: "https://github.com/yourrepo"
+    description: "1–2 lines on what it is and why it matters."
+  - title: "Project 2"
+    url: "https://github.com/yourrepo"
+    description: "1–2 lines."
