@@ -98,7 +98,7 @@
           <div class="exp-title">{{ .title }}</div>
           <div class="muted">{{ .org }} · {{ .period }}</div>
         </div>
-        <div class="exp-body">{{ .description }}</div>
+        {{ if .description }}<div class="exp-body">{{ .description }}</div>{{ end }}
         {{ if .links }}
           <div class="exp-links">
             {{ range .links }}
@@ -122,22 +122,24 @@
 
 <section class="section">
   <h2>Outside of Work</h2>
-  <p>{{ .Site.Data.outside.intro }}</p>
+  {{ with .Site.Data.outside }}
+  <p>{{ .intro }}</p>
   <h3 class="section-h">🌍 Places I've Visited</h3>
   <ul class="places-list">
-    {{ range .Site.Data.outside.visited }}
+    {{ range .visited }}
       <li><strong>{{ .country }}</strong>{{ if .cities }}: {{ .cities }}{{ end }}</li>
     {{ end }}
   </ul>
   <h3 class="section-h">🌍 Places I Planned</h3>
-  {{ if .Site.Data.outside.planned }}
+  {{ if .planned }}
   <ul class="places-list">
-    {{ range .Site.Data.outside.planned }}
+    {{ range .planned }}
       <li><strong>{{ .country }}</strong>{{ if .cities }}: {{ .cities }}{{ end }}</li>
     {{ end }}
   </ul>
   {{ else }}
   <p class="muted">Coming soon...</p>
+  {{ end }}
   {{ end }}
 </section>
 {{ end }}
