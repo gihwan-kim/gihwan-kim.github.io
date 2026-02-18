@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Notes on Gihwan Kim</title>
-    <link>http://localhost:1313/tags/notes/</link>
+    <link>https://gihwan-kim.github.io/tags/notes/</link>
     <description>Recent content in Notes on Gihwan Kim</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/notes/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://gihwan-kim.github.io/tags/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Note example</title>
-      <link>http://localhost:1313/notes/note-example/</link>
+      <link>https://gihwan-kim.github.io/notes/note-example/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/notes/note-example/</guid>
+      <guid>https://gihwan-kim.github.io/notes/note-example/</guid>
       <description>A short note example.</description>
     </item>
   </channel>

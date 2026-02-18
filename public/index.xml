@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gihwan Kim</title>
-    <link>http://localhost:1313/</link>
+    <link>https://gihwan-kim.github.io/</link>
     <description>Recent content on Gihwan Kim</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://gihwan-kim.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello, world</title>
-      <link>http://localhost:1313/posts/hello/</link>
+      <link>https://gihwan-kim.github.io/posts/hello/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/hello/</guid>
+      <guid>https://gihwan-kim.github.io/posts/hello/</guid>
       <description>First post on this site.</description>
     </item>
     <item>
       <title>Note example</title>
-      <link>http://localhost:1313/notes/note-example/</link>
+      <link>https://gihwan-kim.github.io/notes/note-example/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/notes/note-example/</guid>
+      <guid>https://gihwan-kim.github.io/notes/note-example/</guid>
       <description>A short note example.</description>
     </item>
   </channel>

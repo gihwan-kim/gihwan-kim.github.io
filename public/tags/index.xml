@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Gihwan Kim</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://gihwan-kim.github.io/tags/</link>
     <description>Recent content in Tags on Gihwan Kim</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 12 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://gihwan-kim.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Intro</title>
-      <link>http://localhost:1313/tags/intro/</link>
+      <link>https://gihwan-kim.github.io/tags/intro/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/intro/</guid>
+      <guid>https://gihwan-kim.github.io/tags/intro/</guid>
       <description></description>
     </item>
     <item>
       <title>Notes</title>
-      <link>http://localhost:1313/tags/notes/</link>
+      <link>https://gihwan-kim.github.io/tags/notes/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/notes/</guid>
+      <guid>https://gihwan-kim.github.io/tags/notes/</guid>
       <description></description>
     </item>
   </channel>
