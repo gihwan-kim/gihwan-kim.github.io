@@ -1,7 +1,12 @@
 items:
+  - title: "Researcher"
+    org: "ETRI (Electronics and Telecommunications Research Institute), Republic of Korea, Daejeon"
+    period: "Jul 2026 – Current"
+    highlight: true
+
   - title: "Visiting Scholar"
     org: "Carnegie Mellon University, Software and Societal Systems Department, USA"
-    period: "2025 – Present"
+    period: "Aug 2025 – Feb 2026"
     highlight: true
 
   - title: "Research Intern"

@@ -8,7 +8,9 @@ visited:
   - country: "🇬🇷 Greece"
     cities: "Athens, Santorini"
   - country: "🇺🇸 United States"
-    cities: "West Lafayette, San Francisco, Santa Clara, Chicago"
+    cities: "Grand Canyon, LA, Miami, Key West, PA, SF, Santa Clara, Chicago, NY"
+  - country: "🇨🇦 Canada"
+    cities: "Toronto, Niagara Falls"
   - country: "🇯🇵 Japan"
     cities: ""
 
