@@ -66,7 +66,10 @@
 
 *, *::before, *::after{ box-sizing:border-box; }
 
-html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:84px; }
+/* scroll-padding-top parks an anchored section below the sticky bar. Keep it
+   the single source of that offset — a scroll-margin on the sections too
+   would stack, pushing them past the scrollspy's reading line. */
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; scroll-padding-top:88px; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
   *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
@@ -302,7 +305,7 @@ hr{ border:0; border-top:1px solid var(--border); margin:32px 0; }
    Sections
    ========================================================================== */
 
-.section{ margin-bottom:52px; scroll-margin-top:76px; }
+.section{ margin-bottom:52px; }
 .section:last-child{ margin-bottom:0; }
 
 .section > h2{
@@ -366,7 +369,9 @@ hr{ border:0; border-top:1px solid var(--border); margin:32px 0; }
   font-weight:500;
   line-height:1.7;
   color:var(--fg-muted);
-  white-space:nowrap;
+  /* Long venue names must wrap rather than push the page sideways on mobile.
+     Short badges are narrower than the row, so they never break. */
+  max-width:100%;
 }
 .badge-accent{
   border-color:var(--accent-border);
@@ -451,6 +456,35 @@ hr{ border:0; border-top:1px solid var(--border); margin:32px 0; }
   background:var(--accent);
   border-color:var(--accent);
   box-shadow:0 0 0 4px var(--accent-soft);
+}
+
+.tl-row{ display:flex; align-items:flex-start; gap:13px; }
+.tl-body{ flex:1 1 auto; min-width:0; }
+
+.tl-logo{
+  flex:none;
+  width:36px; height:36px;
+  margin-top:1px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--bg-subtle);
+  color:var(--fg-muted);
+  font-family:var(--mono);
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:-.02em;
+  overflow:hidden;
+}
+.tl-logo img{ width:100%; height:100%; object-fit:contain; padding:4px; }
+.tl-logo-img{ background:var(--bg-elevated); }
+.tl-glyph{ font-size:17px; line-height:1; }
+
+/* Tie the current role's mark to its filled timeline dot */
+.tl-item-mark .tl-logo{
+  border-color:var(--accent-border);
+  background:var(--accent-soft);
+  color:var(--accent-fg);
 }
 
 .tl-period{

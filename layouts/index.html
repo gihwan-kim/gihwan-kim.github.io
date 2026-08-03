@@ -59,15 +59,27 @@
   <ol class="timeline">
     {{ range . }}
       <li class="tl-item{{ if .highlight }} tl-item-mark{{ end }}">
-        {{ with .period }}<div class="tl-period">{{ . }}</div>{{ end }}
-        <div class="tl-title">{{ .title }}</div>
-        {{ with .org }}<div class="tl-org">{{ . }}</div>{{ end }}
-        {{ with .description }}<div class="tl-desc">{{ . }}</div>{{ end }}
-        {{ with .links }}
-          <div class="tl-links">
-            {{ range . }}<a href="{{ .url }}" rel="noopener" target="_blank">{{ .label }}</a>{{ end }}
+        <div class="tl-row">
+          {{/* Image if supplied, else an emoji, else a monogram tile. */}}
+          <span class="tl-logo{{ if .logo }} tl-logo-img{{ end }}">
+            {{- if .logo }}<img src="{{ .logo | relURL }}" alt="{{ .org }} logo" loading="lazy">
+            {{- else if .emoji }}<span class="tl-glyph" aria-hidden="true">{{ .emoji }}</span>
+            {{- else }}<span aria-hidden="true">{{ .short | default (substr .title 0 2 | upper) }}</span>
+            {{- end }}
+          </span>
+
+          <div class="tl-body">
+            {{ with .period }}<div class="tl-period">{{ . }}</div>{{ end }}
+            <div class="tl-title">{{ .title }}</div>
+            {{ with .org }}<div class="tl-org">{{ . }}</div>{{ end }}
+            {{ with .description }}<div class="tl-desc">{{ . }}</div>{{ end }}
+            {{ with .links }}
+              <div class="tl-links">
+                {{ range . }}<a href="{{ .url }}" rel="noopener" target="_blank">{{ .label }}</a>{{ end }}
+              </div>
+            {{ end }}
           </div>
-        {{ end }}
+        </div>
       </li>
     {{ end }}
   </ol>

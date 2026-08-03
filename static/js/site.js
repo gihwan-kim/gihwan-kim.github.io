@@ -22,29 +22,7 @@
   var nav = document.querySelector(".sectionnav");
   if (!nav) return;
 
-  // Shadow line only once the bar has actually stuck to the top.
-  var ticking = false;
-  function syncStuck() {
-    nav.classList.toggle("is-stuck", nav.getBoundingClientRect().top <= 0);
-    ticking = false;
-  }
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(syncStuck);
-      }
-    },
-    { passive: true }
-  );
-  syncStuck();
-
-  /* -------------------------------------------------------------- scrollspy */
-
   var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
-  if (!links.length || !("IntersectionObserver" in window)) return;
-
   var targets = links
     .map(function (a) {
       return { link: a, el: document.querySelector(a.getAttribute("href")) };
@@ -52,34 +30,59 @@
     .filter(function (t) {
       return t.el;
     });
-  if (!targets.length) return;
 
-  var visible = new Set();
+  // The reading line sits just below the sticky bar, and below where an
+  // anchor click parks a section (html { scroll-padding-top }). The active
+  // section is the LAST one whose top has crossed it — picking the first
+  // one inside a band would credit the outgoing section's tail instead.
+  var LINE = 120;
 
-  function highlight() {
-    // Document order wins, so the topmost section in the reading band is active.
-    var current = targets.filter(function (t) {
-      return visible.has(t.el);
-    })[0];
-    if (!current) return;
+  // Clicking a link wins over the spy until the smooth scroll settles.
+  var lockedUntil = 0;
+
+  function setActive(current) {
     targets.forEach(function (t) {
       t.link.classList.toggle("is-active", t === current);
     });
   }
 
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) visible.add(entry.target);
-        else visible.delete(entry.target);
-      });
-      highlight();
-    },
-    // Band from just under the sticky bar down to ~1/3 of the viewport.
-    { rootMargin: "-88px 0px -66% 0px", threshold: 0 }
-  );
+  function spy() {
+    if (!targets.length || Date.now() < lockedUntil) return;
+
+    var current = targets[0];
+    targets.forEach(function (t) {
+      if (t.el.getBoundingClientRect().top <= LINE) current = t;
+    });
+
+    // The last section is often too short to ever cross the line on its own.
+    var atBottom =
+      Math.ceil(window.innerHeight + window.scrollY) >= root.scrollHeight - 2;
+    if (atBottom) current = targets[targets.length - 1];
+
+    setActive(current);
+  }
 
   targets.forEach(function (t) {
-    observer.observe(t.el);
+    t.link.addEventListener("click", function () {
+      lockedUntil = Date.now() + 800;
+      setActive(t);
+    });
   });
+
+  var ticking = false;
+  function onFrame() {
+    ticking = false;
+    nav.classList.toggle("is-stuck", nav.getBoundingClientRect().top <= 0);
+    spy();
+  }
+  function schedule() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(onFrame);
+    }
+  }
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+  onFrame();
 })();

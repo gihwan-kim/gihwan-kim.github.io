@@ -1,30 +1,40 @@
+# Each item can carry a small mark shown beside the entry, in priority order:
+#   logo:  "/img/logos/cmu.png"  — an image in static/img/logos/ (best: square, >=128px)
+#   emoji: "🎓"                  — a single glyph
+#   short: "CMU"                 — 2-4 characters, drawn as a monogram tile
 # highlight: true fills the timeline marker — reserved for the current role.
 items:
   - title: "Researcher"
     org: "ETRI (Electronics and Telecommunications Research Institute), Republic of Korea, Daejeon"
     period: "Jul 2026 – Current"
+    short: "ETRI"
     highlight: true
 
   - title: "Visiting Scholar"
     org: "Carnegie Mellon University, Software and Societal Systems Department, USA"
     period: "Aug 2025 – Feb 2026"
+    short: "CMU"
 
   - title: "Research Intern"
     org: "Electronics and Telecommunications Research Institute, Republic of Korea, Daejeon"
     period: "Jan 2024 – Feb 2024"
+    short: "ETRI"
     description: ""
 
   - title: "Visiting Scholar"
     org: "Purdue University, USA"
     period: "Jan 2023 – Feb 2023"
+    short: "PU"
     description: "Participated as a Korean Software Square Winter 2023 program. Implemented and researched counter drone system with on-device AI."
 
   - title: "Research Student"
     org: "Embedded Systems Laboratory at Chungnam National University, Republic of Korea, Daejeon"
     period: "Apr 2022 – Dec 2023"
+    short: "CNU"
     description: "Researched quantization and optimization for a low power computer vision system."
 
   - title: "SW program 42 Seoul"
     org: "Innovation Academy, Republic of Korea, Seoul"
     period: "Feb 2020 – Jun 2021"
+    short: "42"
     description: "Participated software education program."
