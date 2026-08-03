@@ -61,10 +61,11 @@
       <li class="tl-item{{ if .highlight }} tl-item-mark{{ end }}">
         <div class="tl-row">
           {{/* Image if supplied, else an emoji, else a monogram tile. */}}
-          <span class="tl-logo{{ if .logo }} tl-logo-img{{ end }}">
-            {{- if .logo }}<img src="{{ .logo | relURL }}" alt="{{ .org }} logo" loading="lazy">
+          {{ $label := .short | default .org }}
+          <span class="tl-logo{{ if .logo }} tl-logo-img{{ end }}" title="{{ $label }}">
+            {{- if .logo }}<img src="{{ .logo | relURL }}" alt="{{ $label }}" loading="lazy">
             {{- else if .emoji }}<span class="tl-glyph" aria-hidden="true">{{ .emoji }}</span>
-            {{- else }}<span aria-hidden="true">{{ .short | default (substr .title 0 2 | upper) }}</span>
+            {{- else }}<span class="tl-text">{{ $label }}</span>
             {{- end }}
           </span>
 
