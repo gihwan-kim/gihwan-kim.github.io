@@ -10,7 +10,7 @@ caches:
 
 params:
   googleSiteVerification: "c2ijaRI3ScHe5XasWemGTQH2vzOCbYKTLsxK0OPYk7c"
-  siteDescription: "Gihwan Kim - M.S. student at Chungnam National University. Research on model compression, quantization, and vision Transformer optimization. Publications at WACV, IGARSS, ICTC."
+  siteDescription: "Gihwan Kim - Researcher at ETRI working on on-device and physical AI: lightweight VLA/VLN models for humanoid robots, quantization, and vision Transformer optimization. Publications at WACV, ECCV Workshop, IGARSS, ICTC."
   author: "Gihwan Kim"
   avatar: "/img/profile.jpg"   # replace with /img/avatar.jpg if you want
   resume: "/files/CV.pdf"

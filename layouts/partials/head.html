@@ -32,15 +32,18 @@
 
 {{/* JSON-LD for search engines */}}
 {{ if .IsHome }}
+{{ $p := .Site.Data.profile }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "{{ .Site.Data.profile.name }}",
+  "name": "{{ $p.name }}",
   "url": "{{ .Site.BaseURL }}",
   "description": "{{ .Site.Params.siteDescription }}",
-  "jobTitle": "{{ .Site.Data.profile.degree }}",
-  "worksFor": { "@type": "Organization", "name": "Chungnam National University" }
+  "jobTitle": "{{ $p.role }}",
+  {{ with $p.current }}"worksFor": { "@type": "Organization", "name": "{{ .org }}" },{{ end }}
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Chungnam National University" },
+  "sameAs": [{{ range $i, $l := $p.links }}{{ if $i }}, {{ end }}"{{ $l.url }}"{{ end }}]
 }
 </script>
 {{ end }}

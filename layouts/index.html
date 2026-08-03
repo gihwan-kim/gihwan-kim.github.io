@@ -3,9 +3,9 @@
 
 <section class="section" id="about">
   <h2>About Me</h2>
-  {{ with $p.intro }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ with $p.intro }}<div class="lede">{{ . | markdownify }}</div>{{ end }}
   {{ with $.Site.Params.resume }}
-    <p><a class="btn" href="{{ . | relURL }}">{{ partial "icon.html" "doc" }}See My CV</a></p>
+    <div class="cta"><a class="btn" href="{{ . | relURL }}">{{ partial "icon.html" "doc" }}See My CV</a></div>
   {{ end }}
 </section>
 

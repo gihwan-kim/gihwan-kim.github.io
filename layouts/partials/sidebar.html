@@ -18,7 +18,7 @@
         {{/* The page's own title owns the h1 outside the home page */}}
         <p class="name"><a href="{{ relURL "" }}">{{ $p.name }}</a></p>
         {{- end }}
-        {{ with $p.degree }}<div class="role">{{ . }}</div>{{ end }}
+        {{ with $p.role }}<div class="role">{{ . }}</div>{{ end }}
       </div>
     </div>
 
@@ -26,10 +26,23 @@
       {{ with $p.email }}
         <li>{{ partial "icon.html" "mail" }}<a href="mailto:{{ . }}">{{ . }}</a></li>
       {{ end }}
-      {{ with $p.affiliation }}
+      {{ with $p.location }}
         <li>{{ partial "icon.html" "pin" }}<span>{{ . }}</span></li>
       {{ end }}
     </ul>
+
+    {{ with $p.current }}
+    <div class="sidebar-block">
+      <div class="sidebar-label label-now"><span class="now-dot" aria-hidden="true"></span>Current</div>
+      <div class="edu-item">
+        <div class="edu-org">
+          {{ if .url }}<a href="{{ .url }}" rel="noopener" target="_blank">{{ .org }}</a>{{ else }}{{ .org }}{{ end }}
+        </div>
+        {{ with .period }}<div class="edu-period">{{ . }}</div>{{ end }}
+        {{ with .role }}<div class="edu-degree">{{ . }}</div>{{ end }}
+      </div>
+    </div>
+    {{ end }}
 
     {{ with .Site.Data.education.items }}
     <div class="sidebar-block">

@@ -1,7 +1,15 @@
 name: "Gihwan Kim"
+role: "Researcher at ETRI"
 email: "gihwan.kim98@o.cnu.ac.kr"
-affiliation: "ESLAB / Chungnam National University: 2024 March - Current"
-degree: "M.S. Computer System and Software"
+location: "Daejeon, Republic of Korea"
+
+# Rendered as the "Current" block at the top of the sidebar.
+current:
+  org: "ETRI (Electronics and Telecommunications Research Institute)"
+  url: "https://www.etri.re.kr/eng/main/main.etri"
+  period: "Jul 2026 — Now"
+  role: "Researcher, On-device & Physical AI"
+
 links:
   - label: "Google Scholar"
     url: "https://scholar.google.com/citations?user=hN5V_WUAAAAJ&hl=en"
@@ -9,7 +17,19 @@ links:
     url: "http://www.linkedin.com/in/gihwan-kim"
   - label: "GitHub"
     url: "https://github.com/gihwan-kim"
-intro: >
-  I am an M.S. Computer Science and Engineering student at Chungnam National University, advised by Hyungshin Kim in ESLAB
-  My research experience has centered on model compression and acceleration. Previously, i worked on semantic segmentation and object detection, focusing on vision tasks acceleration and compression in satellite applications. 
-  I earned B.S. degree in Computer Software and Engineering from Chungnam National University.
+
+# Rendered as Markdown — links and paragraph breaks work here.
+intro: |
+  I am a Researcher at [ETRI](https://www.etri.re.kr/eng/main/main.etri), working on
+  on-device and physical AI. My current focus is making vision-language-action (VLA) and
+  vision-language-navigation (VLN) models light enough to run on humanoid robots, together
+  with the orchestration that keeps perception, reasoning, and control within a real robot's
+  compute and latency budget.
+
+  Before ETRI, I completed my M.S. in Computer System and Software at Chungnam National
+  University, advised by Hyungshin Kim in ESLAB, where I worked on model compression and
+  acceleration — post-training quantization for vision transformers
+  ([WACV 2026](https://openaccess.thecvf.com/content/WACV2026/papers/Kim_IPTQ-ViT_Post-Training_Quantization_of_Non-linear_Functions_for_Integer-only_Vision_Transformers_WACV_2026_paper.pdf),
+  [ECCV 2024 Workshop](https://link.springer.com/chapter/10.1007/978-3-031-91979-4_10))
+  and lightweight segmentation and detection for satellite and UAV imagery. I was also a
+  visiting scholar at Carnegie Mellon University.

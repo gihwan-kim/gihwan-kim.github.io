@@ -1,6 +1,6 @@
 items:
   - title: "IPTQ-ViT: Post-Training Quantization of Non-linear Functions for Integer-only Vision Transformers"
-    url: "https://arxiv.org/abs/2511.15369"
+    url: "https://openaccess.thecvf.com/content/WACV2026/papers/Kim_IPTQ-ViT_Post-Training_Quantization_of_Non-linear_Functions_for_Integer-only_Vision_Transformers_WACV_2026_paper.pdf"
     notes:
       - text: "WACV 2026 Oral"
         emoji: "⭐"
