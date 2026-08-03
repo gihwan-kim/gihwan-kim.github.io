@@ -461,23 +461,27 @@ hr{ border:0; border-top:1px solid var(--border); margin:32px 0; }
 .tl-row{ display:flex; align-items:flex-start; gap:13px; }
 .tl-body{ flex:1 1 auto; min-width:0; }
 
+/* One chip size for every mark, so the text column starts at the same x
+   whether the org's logo is a square symbol, a wordmark, or a monogram. */
 .tl-logo{
   flex:none;
-  width:36px; height:36px;
+  width:76px; height:36px;
   margin-top:1px;
   display:inline-flex; align-items:center; justify-content:center;
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:9px;
   background:var(--bg-subtle);
   color:var(--fg-muted);
   font-family:var(--mono);
-  font-size:10.5px;
+  font-size:11.5px;
   font-weight:500;
-  letter-spacing:-.02em;
+  letter-spacing:-.01em;
   overflow:hidden;
 }
-.tl-logo img{ width:100%; height:100%; object-fit:contain; padding:4px; }
-.tl-logo-img{ background:var(--bg-elevated); }
+.tl-logo img{ width:100%; height:100%; object-fit:contain; padding:6px 9px; }
+/* Brand files are opaque JPEG/PNG on white, so the chip stays white in both
+   themes rather than showing a bright rectangle on the dark background. */
+.tl-logo-img{ background:#fff; border-color:var(--border-strong); }
 .tl-glyph{ font-size:17px; line-height:1; }
 
 /* Tie the current role's mark to its filled timeline dot */
@@ -486,6 +490,8 @@ hr{ border:0; border-top:1px solid var(--border); margin:32px 0; }
   background:var(--accent-soft);
   color:var(--accent-fg);
 }
+/* A brand file keeps its white field; only the frame picks up the accent. */
+.tl-item-mark .tl-logo-img{ background:#fff; }
 
 .tl-period{
   font-family:var(--mono);

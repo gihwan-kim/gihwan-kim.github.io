@@ -8,6 +8,7 @@ items:
     org: "ETRI (Electronics and Telecommunications Research Institute), Republic of Korea, Daejeon"
     period: "Jul 2026 – Current"
     short: "ETRI"
+    logo: "/img/logos/etri.jpg"
     highlight: true
 
   - title: "Visiting Scholar"
@@ -19,6 +20,7 @@ items:
     org: "Electronics and Telecommunications Research Institute, Republic of Korea, Daejeon"
     period: "Jan 2024 – Feb 2024"
     short: "ETRI"
+    logo: "/img/logos/etri.jpg"
     description: ""
 
   - title: "Visiting Scholar"
