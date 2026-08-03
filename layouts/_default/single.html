@@ -1,23 +1,30 @@
 {{ define "main" }}
-<article class="post">
-  <h1 class="title">{{ .Title }}</h1>
-  <div class="muted">
-    {{ with .Date }}{{ .Format "2006-01-02" }}{{ end }}
-    {{ with .Params.tags }} ·
-      {{ range $i, $t := . }}
-        {{ if $i }}, {{ end }}<a href="/tags/{{ $t | urlize }}/">{{ $t }}</a>
+<article>
+  {{ with .Parent }}
+    <a class="backlink" href="{{ .RelPermalink }}">{{ partial "icon.html" "arrow-left" }}{{ .Title }}</a>
+  {{ end }}
+
+  <div class="page-head">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="page-meta">
+      {{ with .Date }}<span>{{ .Format "2006-01-02" }}</span>{{ end }}
+      <span>{{ .ReadingTime }} min read</span>
+      {{ with .Params.tags }}
+        <span>
+          {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "/tags/%s/" ($t | urlize)) | relURL }}">{{ $t }}</a>{{ end }}
+        </span>
       {{ end }}
-    {{ end }}
+    </div>
   </div>
 
   {{ if .TableOfContents }}
     <div class="toc">
-      <div class="toc-title">Table of Content</div>
+      <div class="toc-title">Contents</div>
       {{ .TableOfContents }}
     </div>
   {{ end }}
 
-  <div class="content">
+  <div class="prose">
     {{ .Content }}
   </div>
 </article>

@@ -1,26 +1,27 @@
 {{ define "main" }}
-<section>
-  <h1 class="title">{{ .Title }}</h1>
-
-  {{ if .Content }}
-    <div class="content">{{ .Content }}</div>
+<div class="page-head">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Pages }}
+    <div class="page-meta">{{ len . }} {{ cond (eq (len .) 1) "entry" "entries" }}</div>
   {{ end }}
+</div>
 
-  <div class="list">
-    {{ range .Pages.ByDate.Reverse }}
-      <div class="list-item">
-        <div class="list-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
-        <div class="muted">
-          {{ with .Date }}{{ .Format "2006-01-02" }}{{ end }}
-          {{ with .Params.tags }} ·
-            {{ range $i, $t := . }}
-              {{ if $i }}, {{ end }}<a href="/tags/{{ $t | urlize }}/">{{ $t }}</a>
-            {{ end }}
-          {{ end }}
-        </div>
-        {{ with .Summary }}<div class="list-summary">{{ . }}</div>{{ end }}
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+<ul class="entry">
+  {{ range .Pages.ByDate.Reverse }}
+    <li>
+      <div class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+      <div class="entry-meta">
+        {{ with .Date }}{{ .Format "2006-01-02" }}{{ end }}
+        {{ with .Params.tags }} ·
+          {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ (printf "/tags/%s/" ($t | urlize)) | relURL }}">{{ $t }}</a>{{ end }}
+        {{ end }}
       </div>
-    {{ end }}
-  </div>
-</section>
+      {{ with .Summary }}<div class="entry-summary">{{ . }}</div>{{ end }}
+    </li>
+  {{ else }}
+    <li><div class="muted">Nothing here yet.</div></li>
+  {{ end }}
+</ul>
 {{ end }}

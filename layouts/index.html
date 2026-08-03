@@ -1,36 +1,19 @@
 {{ define "main" }}
 {{ $p := .Site.Data.profile }}
-<div class="hero">
-  <div class="hero-left">
-    <img class="avatar" src="{{ $p.avatar | default .Site.Params.avatar }}" alt="portrait">
-  </div>
-  <div class="hero-right">
-    <h1 class="title">{{ $p.name }}</h1>
-    <ul class="meta">
-      <li><a href="mailto:{{ $p.email }}">{{ $p.email }}</a></li>
-      <li>{{ $p.affiliation }}</li>
-      <li>{{ $p.degree }}</li>
-    </ul>
 
-    <h3 class="section-h">Also find me at ...</h3>
-    <ul class="links">
-      {{ range $p.links }}
-        <li><a href="{{ .url }}">{{ .label }}</a></li>
-      {{ end }}
-    </ul>
-  </div>
-</div>
-
-<section class="section">
+<section class="section" id="about">
   <h2>About Me</h2>
-  <p>{{ $p.intro }}</p>
-  <p><a class="button" href="{{ $.Site.Params.resume }}">CV</a></p>
+  {{ with $p.intro }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ with $.Site.Params.resume }}
+    <p><a class="btn" href="{{ . | relURL }}">{{ partial "icon.html" "doc" }}See My CV</a></p>
+  {{ end }}
 </section>
 
+{{ with .Site.Data.news.items }}
 <section class="section" id="news">
   <h2>News</h2>
-  <ul class="news-list">
-    {{ range .Site.Data.news.items }}
+  <ul class="news">
+    {{ range . }}
       <li>
         <span class="news-date">{{ .date }}</span>
         <span class="news-text">{{ .text }}</span>
@@ -38,108 +21,133 @@
     {{ end }}
   </ul>
 </section>
+{{ end }}
 
-<section class="section">
+{{ with .Site.Data.research.items }}
+<section class="section" id="publications">
   <h2>Publications</h2>
-  <!-- <p class="muted">Highlight list. Put a full list on a dedicated page later if you want.</p> -->
-  <ul>
-    {{ range .Site.Data.research.items }}
-      <li class="research-item">
-        <a href="{{ .url }}">{{ .title }}</a>
-        {{ if or .notes .note }}
-          <div class="research-notes">
-            {{ if .notes }}
-              {{ range .notes }}
-                <div class="research-note">{{ if .emoji }}<span class="note-emoji">{{ .emoji }}</span>{{ end }}{{ default . .text }}</div>
+  <ul class="pub-list">
+    {{ range . }}
+      {{ $notes := .notes }}
+      {{ if and (not $notes) .note }}{{ $notes = slice (dict "text" .note) }}{{ end }}
+      <li>
+        <a class="pub" href="{{ .url }}" rel="noopener" target="_blank">
+          <span class="pub-title">{{ .title }}{{ partial "icon.html" "link" }}</span>
+          {{ with $notes }}
+            <span class="badges">
+              {{ range $i, $n := . }}
+                {{/* An emoji marks an award; the leading note is the venue. */}}
+                {{ $cls := cond (eq $i 0) "badge badge-accent" "badge" }}
+                {{ if $n.emoji }}{{ $cls = "badge badge-award" }}{{ end }}
+                <span class="{{ $cls }}">
+                  {{- with $n.emoji }}<span aria-hidden="true">{{ . }}</span>{{ end -}}
+                  {{ default $n $n.text }}
+                </span>
               {{ end }}
-            {{ else }}
-              <div class="research-note">{{ if .emoji }}<span class="note-emoji">{{ .emoji }}</span>{{ end }}{{ .note }}</div>
-            {{ end }}
-          </div>
-        {{ end }}
+            </span>
+          {{ end }}
+        </a>
       </li>
     {{ end }}
   </ul>
 </section>
+{{ end }}
 
-<section class="section">
+{{ with .Site.Data.experience.items }}
+<section class="section" id="experience">
+  <h2>Experience</h2>
+  <ol class="timeline">
+    {{ range . }}
+      <li class="tl-item{{ if .highlight }} tl-item-mark{{ end }}">
+        {{ with .period }}<div class="tl-period">{{ . }}</div>{{ end }}
+        <div class="tl-title">{{ .title }}</div>
+        {{ with .org }}<div class="tl-org">{{ . }}</div>{{ end }}
+        {{ with .description }}<div class="tl-desc">{{ . }}</div>{{ end }}
+        {{ with .links }}
+          <div class="tl-links">
+            {{ range . }}<a href="{{ .url }}" rel="noopener" target="_blank">{{ .label }}</a>{{ end }}
+          </div>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ol>
+</section>
+{{ end }}
+
+{{/* Skip the scaffolded placeholder rows shipped with the theme. */}}
+{{ $projects := slice }}
+{{ range .Site.Data.projects.items }}
+  {{ if not (strings.Contains (.url | default "") "yourrepo") }}{{ $projects = $projects | append . }}{{ end }}
+{{ end }}
+{{ with $projects }}
+<section class="section" id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    {{ range . }}
+      <a class="card" href="{{ .url }}" rel="noopener" target="_blank">
+        <div class="card-title">{{ .title }}{{ partial "icon.html" "link" }}</div>
+        {{ with .description }}<div class="card-desc">{{ . }}</div>{{ end }}
+      </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ with .Site.Data.skills.categories }}
+<section class="section" id="skills">
   <h2>Skills</h2>
   <div class="grid">
-    {{ range .Site.Data.skills.categories }}
-      <div class="panel">
-        <div class="panel-title">{{ .name }}</div>
-        <div class="muted">{{ delimit .items ", " }}</div>
+    {{ range . }}
+      <div class="card">
+        <div class="card-title">{{ .name }}</div>
+        <div class="chips">
+          {{ range .items }}<span class="chip">{{ . }}</span>{{ end }}
+        </div>
       </div>
     {{ end }}
   </div>
 </section>
+{{ end }}
 
-<section class="section">
-  <h2>Education</h2>
-  <ol class="experience">
-    {{ range .Site.Data.education.items }}
-      <li class="exp-item">
-        <div class="exp-head">
-          <div class="exp-title">{{ .title }}</div>
-          <div class="muted">{{ .org }} · {{ .period }}</div>
-        </div>
-        {{ if .description }}<div class="exp-body">{{ .description }}</div>{{ end }}
-      </li>
-    {{ end }}
-  </ol>
-</section>
-
-<section class="section">
-  <h2>Experience</h2>
-  <ol class="experience">
-    {{ range .Site.Data.experience.items }}
-      <li class="exp-item{{ if .highlight }} exp-item-highlight{{ end }}">
-        <div class="exp-head">
-          <div class="exp-title">{{ .title }}</div>
-          <div class="muted">{{ .org }} · {{ .period }}</div>
-        </div>
-        {{ if .description }}<div class="exp-body">{{ .description }}</div>{{ end }}
-        {{ if .links }}
-          <div class="exp-links">
-            {{ range .links }}
-              <a href="{{ .url }}">{{ .label }}</a>
-            {{ end }}
-          </div>
-        {{ end }}
-      </li>
-    {{ end }}
-  </ol>
-</section>
-
-<section class="section">
+{{ with .Site.Data.courses.items }}
+<section class="section" id="courses">
   <h2>Courses</h2>
-  <ol>
-    {{ range .Site.Data.courses.items }}
-      <li>{{ . }}</li>
-    {{ end }}
-  </ol>
-</section> 
+  <ul class="plain">
+    {{ range . }}<li>{{ . }}</li>{{ end }}
+  </ul>
+</section>
+{{ end }}
 
-<section class="section">
+{{ with .Site.Data.outside }}
+<section class="section" id="outside">
   <h2>Outside of Work</h2>
-  {{ with .Site.Data.outside }}
-  <p>{{ .intro }}</p>
-  <h3 class="section-h">🌍 Places I've Visited</h3>
-  <ul class="places-list">
-    {{ range .visited }}
-      <li><strong>{{ .country }}</strong>{{ if .cities }}: {{ .cities }}{{ end }}</li>
-    {{ end }}
-  </ul>
-  <h3 class="section-h">🌍 Places I Planned</h3>
-  {{ if .planned }}
-  <ul class="places-list">
-    {{ range .planned }}
-      <li><strong>{{ .country }}</strong>{{ if .cities }}: {{ .cities }}{{ end }}</li>
-    {{ end }}
-  </ul>
-  {{ else }}
-  <p class="muted">Coming soon...</p>
+  {{ with .intro }}<p>{{ . }}</p>{{ end }}
+
+  <div class="subhead">🌍 Places I've Visited</div>
+  {{ with .visited }}
+    <ul class="places">
+      {{ range . }}
+        <li>
+          <span class="place-country">{{ .country }}</span>
+          {{ with .cities }}<span class="place-cities">{{ . }}</span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
   {{ end }}
+
+  <div class="subhead">📍 Places I Planned</div>
+  {{ if .planned }}
+    <ul class="places">
+      {{ range .planned }}
+        <li>
+          <span class="place-country">{{ .country }}</span>
+          {{ with .cities }}<span class="place-cities">{{ . }}</span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="muted">Coming soon...</p>
   {{ end }}
 </section>
+{{ end }}
 {{ end }}

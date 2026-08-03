@@ -1,6 +1,25 @@
-<nav class="nav">
-  <a class="nav-left" href="/">{{ .Site.Data.profile.name | default .Site.Title }}</a>
-  <div class="nav-right">
-    <a href="/">About Me</a>
-  </div>
+{{- /*
+  On the home page this is an in-page section jump bar (scroll-spied by
+  site.js). Everywhere else it degrades to plain site navigation.
+*/ -}}
+{{- $items := slice -}}
+{{- if .IsHome -}}
+  {{- $items = $items | append (dict "href" "#about" "label" "About Me") -}}
+  {{- with .Site.Data.news.items }}{{ $items = $items | append (dict "href" "#news" "label" "News") }}{{ end -}}
+  {{- with .Site.Data.research.items }}{{ $items = $items | append (dict "href" "#publications" "label" "Publications") }}{{ end -}}
+  {{- with .Site.Data.experience.items }}{{ $items = $items | append (dict "href" "#experience" "label" "Experience") }}{{ end -}}
+  {{- $items = $items | append (dict "href" "#outside" "label" "Outside of Work") -}}
+{{- else -}}
+  {{- $items = $items | append (dict "href" (relURL "") "label" "About Me") -}}
+{{- end -}}
+{{- with .Site.GetPage "/posts" }}{{ $items = $items | append (dict "href" .RelPermalink "label" "Posts") }}{{ end -}}
+{{- with .Site.GetPage "/notes" }}{{ $items = $items | append (dict "href" .RelPermalink "label" "Notes") }}{{ end -}}
+
+<nav class="sectionnav" aria-label="Sections">
+  <ul>
+    {{ range $items }}
+      {{ $active := and (not (hasPrefix .href "#")) (ne .href "/") (hasPrefix $.RelPermalink .href) }}
+      <li><a href="{{ .href }}"{{ if $active }} class="is-active"{{ end }}>{{ .label }}</a></li>
+    {{ end }}
+  </ul>
 </nav>

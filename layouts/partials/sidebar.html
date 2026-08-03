@@ -1,0 +1,70 @@
+{{- $p := .Site.Data.profile -}}
+<aside class="sidebar">
+  <div class="sidebar-card">
+
+    <div class="sidebar-top">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">
+        {{ partial "icon.html" "sun" }}{{ partial "icon.html" "moon" }}
+      </button>
+    </div>
+
+    <div class="sidebar-head">
+      <img class="avatar" src="{{ $p.avatar | default .Site.Params.avatar }}"
+           width="104" height="104" alt="Portrait of {{ $p.name }}">
+      <div class="identity">
+        {{- if .IsHome }}
+        <h1 class="name">{{ $p.name }}</h1>
+        {{- else }}
+        {{/* The page's own title owns the h1 outside the home page */}}
+        <p class="name"><a href="{{ relURL "" }}">{{ $p.name }}</a></p>
+        {{- end }}
+        {{ with $p.degree }}<div class="role">{{ . }}</div>{{ end }}
+      </div>
+    </div>
+
+    <ul class="contact">
+      {{ with $p.email }}
+        <li>{{ partial "icon.html" "mail" }}<a href="mailto:{{ . }}">{{ . }}</a></li>
+      {{ end }}
+      {{ with $p.affiliation }}
+        <li>{{ partial "icon.html" "pin" }}<span>{{ . }}</span></li>
+      {{ end }}
+    </ul>
+
+    {{ with .Site.Data.education.items }}
+    <div class="sidebar-block">
+      <div class="sidebar-label">Education</div>
+      {{ range . }}
+        <div class="edu-item">
+          <div class="edu-org">{{ .org }}</div>
+          {{ with .period }}<div class="edu-period">{{ . }}</div>{{ end }}
+          <div class="edu-degree">
+            {{ .title }}{{ with .description }} · {{ . }}{{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with $p.links }}
+    <div class="sidebar-block">
+      <div class="sidebar-label">Find me at</div>
+      <ul class="social">
+        {{ range . }}
+          {{- /* Pick the brand mark from the host so data/profile.yaml stays icon-free */ -}}
+          {{ $icon := "link" }}
+          {{ if strings.Contains .url "scholar.google" }}{{ $icon = "scholar" }}
+          {{ else if strings.Contains .url "linkedin." }}{{ $icon = "linkedin" }}
+          {{ else if strings.Contains .url "github." }}{{ $icon = "github" }}{{ end }}
+          <li>
+            <a href="{{ .url }}" rel="me noopener" target="_blank">
+              {{ partial "icon.html" $icon }}<span class="label">{{ .label }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+  </div>
+</aside>

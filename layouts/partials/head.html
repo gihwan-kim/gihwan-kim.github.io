@@ -5,13 +5,30 @@
 <meta name="description" content="{{ .Site.Params.siteDescription | default .Site.Title }}">
 <link rel="canonical" href="{{ .Permalink }}">
 <meta name="author" content="{{ .Site.Params.author | default .Site.Title }}">
+<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1014" media="(prefers-color-scheme: dark)">
+
+{{/* Resolve the stored theme before first paint so dark mode never flashes white */}}
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem("theme");
+    var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", saved || (dark ? "dark" : "light"));
+  } catch (e) {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+})();
+</script>
 
 {{/* Open Graph / Social */}}
-<meta property="og:type" content="website">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}">
 <meta property="og:description" content="{{ .Site.Params.siteDescription | default .Site.Title }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
+{{ with .Site.Params.avatar }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+<meta name="twitter:card" content="summary">
 
 {{/* JSON-LD for search engines */}}
 {{ if .IsHome }}
@@ -28,5 +45,8 @@
 </script>
 {{ end }}
 
-<link rel="stylesheet" href="/css/style.css">
-<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+<link rel="icon" href="{{ "img/favicon.svg" | relURL }}" type="image/svg+xml">

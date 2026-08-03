@@ -1,3 +1,2 @@
-<div class="muted">
-  © {{ now.Format "2006" }} By {{ .Site.Data.profile.name | default .Site.Title }}
-</div>
+<span>© {{ now.Format "2006" }} {{ .Site.Data.profile.name | default .Site.Title }}</span>
+<span>Built with <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> · Hosted on GitHub Pages</span>

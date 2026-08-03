@@ -4,20 +4,23 @@
     {{ partial "head.html" . }}
   </head>
   <body>
-    <header class="site-header">
-      <div class="container">
-        {{ partial "nav.html" . }}
-      </div>
-    </header>
+    <div class="shell">
+      {{ partial "sidebar.html" . }}
 
-    <main class="container">
-      {{ block "main" . }}{{ end }}
-    </main>
+      <div class="col-main">
+        {{ partial "nav.html" . }}
+        <main>
+          {{ block "main" . }}{{ end }}
+        </main>
+      </div>
+    </div>
 
     <footer class="site-footer">
-      <div class="container">
+      <div class="inner">
         {{ partial "footer.html" . }}
       </div>
     </footer>
+
+    <script src="{{ "js/site.js" | relURL }}" defer></script>
   </body>
 </html>
