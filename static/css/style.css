@@ -245,6 +245,24 @@ hr{ border:0; border-top:1px solid var(--border); margin:32px 0; }
 .social .ico{ color:var(--fg-faint); flex:none; }
 .social a:hover .ico{ color:var(--accent); }
 
+/* Live citation count, tucked onto the Scholar row so it costs no height */
+.social .stat{
+  margin-left:auto;
+  padding:1px 7px;
+  border-radius:var(--radius-pill);
+  background:var(--bg-subtle);
+  border:1px solid var(--border);
+  font-family:var(--mono);
+  font-size:10.5px;
+  line-height:1.6;
+  color:var(--fg-faint);
+}
+.social a:hover .stat{
+  border-color:var(--accent-border);
+  background:var(--accent-soft);
+  color:var(--accent-fg);
+}
+
 /* Theme toggle */
 .theme-toggle{
   appearance:none;

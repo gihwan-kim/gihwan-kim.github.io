@@ -30,12 +30,18 @@
     {{ range . }}
       {{ $notes := .notes }}
       {{ if and (not $notes) .note }}{{ $notes = slice (dict "text" .note) }}{{ end }}
+      {{/* Citation counts come from data/scholar.yaml, keyed by this title. */}}
+      {{ $title := .title }}
+      {{ $cites := 0 }}
+      {{ with $.Site.Data.scholar }}{{ with .papers }}
+        {{ $cites = int (index . $title | default 0) }}
+      {{ end }}{{ end }}
       <li>
         <a class="pub" href="{{ .url }}" rel="noopener" target="_blank">
           <span class="pub-title">{{ .title }}{{ partial "icon.html" "link" }}</span>
-          {{ with $notes }}
+          {{ if or $notes $cites }}
             <span class="badges">
-              {{ range $i, $n := . }}
+              {{ range $i, $n := $notes }}
                 {{/* An emoji marks an award; the leading note is the venue. */}}
                 {{ $cls := cond (eq $i 0) "badge badge-accent" "badge" }}
                 {{ if $n.emoji }}{{ $cls = "badge badge-award" }}{{ end }}
@@ -44,6 +50,7 @@
                   {{ default $n $n.text }}
                 </span>
               {{ end }}
+              {{ if $cites }}<span class="badge badge-cite">Cited by {{ $cites }}</span>{{ end }}
             </span>
           {{ end }}
         </a>

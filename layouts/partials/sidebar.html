@@ -70,8 +70,12 @@
           {{ else if strings.Contains .url "linkedin." }}{{ $icon = "linkedin" }}
           {{ else if strings.Contains .url "github." }}{{ $icon = "github" }}{{ end }}
           <li>
-            <a href="{{ .url }}" rel="me noopener" target="_blank">
+            <a href="{{ .url }}" rel="me noopener" target="_blank"
+               {{- with $.Site.Data.scholar }}{{ if eq $icon "scholar" }} title="{{ .citations }} citations · h-index {{ .h_index }} · i10 {{ .i10_index }} · updated {{ .updated }}"{{ end }}{{ end }}>
               {{ partial "icon.html" $icon }}<span class="label">{{ .label }}</span>
+              {{- if eq $icon "scholar" }}{{ with $.Site.Data.scholar }}
+                <span class="stat">{{ .citations }}</span>
+              {{ end }}{{ end }}
             </a>
           </li>
         {{ end }}
