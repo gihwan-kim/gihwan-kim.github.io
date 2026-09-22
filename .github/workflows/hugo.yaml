@@ -4,8 +4,8 @@ on:
     branches:
       - main
   schedule:
-    # Daily, to pick up new Google Scholar citation counts.
-    - cron: "0 4 * * *"
+    # Weekly (Sundays), to pick up new Google Scholar citation counts.
+    - cron: "0 4 * * 0"
   workflow_dispatch:
 
 permissions:
